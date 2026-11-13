@@ -1,7 +1,7 @@
 # Industrial IoT Automation Module for Sturgeon & Trout Aquaculture (MQTT \+ ESP32-S3)
 
 **Author:** George-Razvan Bungarzescu  
-**Institution:** Universitatea Politehnica Timisoara — Facultatea de Automatica si Calculatoare (Anul II, 2025–2026)  
+**Institution:** Universitatea Politehnica Timisoara — Facultatea de Automatica si Calculatoare
 **Course:** Proiect Sincretic — Sisteme cu microcontrolere si IoT industriale
 
 ---
