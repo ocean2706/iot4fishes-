@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "author": "George-Razvan Bungarzescu",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-s3-devkitc-1", "id": "esp", "top": 95, "left": 20, "attrs": {} },
+
+    { "type": "wokwi-lcd1602", "id": "lcd", "top": -145, "left": -110, "attrs": { "pins": "i2c" } },
+
+    { "type": "wokwi-text", "id": "lbl_turb", "top": -15, "left": -330, "attrs": { "text": "Turbiditate Dunare (NTU)" } },
+    { "type": "wokwi-potentiometer", "id": "pot_turb", "top": 5, "left": -290, "attrs": { "value": "150" } },
+
+    { "type": "wokwi-text", "id": "lbl_calc", "top": 105, "left": -320, "attrs": { "text": "Calcar (100-450 ppm)" } },
+    { "type": "wokwi-potentiometer", "id": "pot_calcar", "top": 125, "left": -290, "attrs": { "value": "200" } },
+
+    { "type": "wokwi-text", "id": "lbl_sw", "top": 220, "left": -330, "attrs": { "text": "Comutator Pompa Rau" } },
+    { "type": "wokwi-slide-switch", "id": "sw_pompa", "top": 245, "left": -275, "attrs": { "value": "1" } },
+
+    { "type": "wokwi-text", "id": "lbl_btn", "top": 285, "left": -315, "attrs": { "text": "Hranire Manuala B1" } },
+    { "type": "wokwi-pushbutton", "id": "btn_feed", "top": 308, "left": -280, "attrs": { "color": "green" } },
+
+    { "type": "wokwi-text", "id": "lbl_srv", "top": 370, "left": -315, "attrs": { "text": "Hranitor Automat B1" } },
+    { "type": "wokwi-servo", "id": "servo_hrana", "top": 390, "left": -320, "attrs": {} },
+
+    { "type": "wokwi-text", "id": "lbl_t", "top": -15, "left": 255, "attrs": { "text": "Temp B1 (8-24 C)" } },
+    { "type": "wokwi-potentiometer", "id": "pot_temp", "top": 5, "left": 270, "attrs": { "value": "450" } },
+
+    { "type": "wokwi-text", "id": "lbl_do", "top": 100, "left": 240, "attrs": { "text": "Oxigen DO (4-12 mg/L)" } },
+    { "type": "wokwi-potentiometer", "id": "pot_do", "top": 120, "left": 270, "attrs": { "value": "300" } },
+
+    { "type": "wokwi-resistor", "id": "r1", "top": 225, "left": 230, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "led_oxig", "top": 190, "left": 310, "attrs": { "color": "blue" } },
+    { "type": "wokwi-text", "id": "txt_oxig", "top": 205, "left": 345, "attrs": { "text": "Oxigenare B1" } },
+
+    { "type": "wokwi-resistor", "id": "r2", "top": 275, "left": 230, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "led_calcar", "top": 240, "left": 310, "attrs": { "color": "yellow" } },
+    { "type": "wokwi-text", "id": "txt_calcar", "top": 255, "left": 345, "attrs": { "text": "Dozator Anti-Calcar" } },
+
+    { "type": "wokwi-resistor", "id": "r3", "top": 325, "left": 230, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "led_filtru", "top": 290, "left": 310, "attrs": { "color": "green" } },
+    { "type": "wokwi-text", "id": "txt_filtru", "top": 305, "left": 345, "attrs": { "text": "Purjare Filtru Dunare" } },
+
+    { "type": "wokwi-resistor", "id": "r4", "top": 375, "left": 230, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "led_pompa", "top": 340, "left": 310, "attrs": { "color": "cyan" } },
+    { "type": "wokwi-text", "id": "txt_pompa", "top": 355, "left": 345, "attrs": { "text": "Pompa Curgere Rau" } },
+
+    { "type": "wokwi-resistor", "id": "r5", "top": 425, "left": 230, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "led_alarma", "top": 390, "left": 310, "attrs": { "color": "red" } },
+    { "type": "wokwi-text", "id": "txt_alarma", "top": 405, "left": 345, "attrs": { "text": "Alarma Critica" } },
+
+    { "type": "wokwi-buzzer", "id": "buzzer", "top": 450, "left": 295, "rotate": 90, "attrs": { "volume": "0.5" } },
+    { "type": "wokwi-text", "id": "txt_buz", "top": 475, "left": 355, "attrs": { "text": "Alarma Audio" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+
+    [ "lcd:GND", "esp:GND.1", "black", [ "h-245", "v595", "h345", "v-130" ] ],
+    [ "lcd:VCC", "esp:5V", "red", [ "h-235", "v575", "h335", "v-125" ] ],
+    [ "lcd:SDA", "esp:8", "cyan", [ "h-25", "v315", "h115" ] ],
+    [ "lcd:SCL", "esp:9", "white", [ "h-15", "v360", "h105" ] ],
+
+    [ "pot_turb:VCC", "esp:3V3", "red", [ "v10", "h135", "v25" ] ],
+    [ "pot_calcar:VCC", "esp:3V3.1", "red", [ "v10", "h150", "v-80" ] ],
+    [ "pot_turb:GND", "lcd:GND", "black", [ "v12", "h-85", "v-195" ] ],
+    [ "pot_calcar:GND", "pot_turb:GND", "black", [ "v12", "h-85", "v-120" ] ],
+    [ "pot_turb:SIG", "esp:4", "orange", [ "v22", "h205", "v30" ] ],
+    [ "pot_calcar:SIG", "esp:5", "purple", [ "v22", "h205", "v-80" ] ],
+
+    [ "sw_pompa:1", "pot_calcar:GND", "black", [ "v10", "h-75", "v-90" ] ],
+    [ "sw_pompa:2", "esp:15", "cyan", [ "v10", "h185", "v-70" ] ],
+    [ "sw_pompa:3", "esp:3V3.1", "red", [ "v5", "h135", "v-140" ] ],
+
+    [ "btn_feed:1.r", "esp:14", "green", [ "h185", "v-15" ] ],
+    [ "btn_feed:2.l", "sw_pompa:1", "black", [ "h-65", "v-50" ] ],
+
+    [ "servo_hrana:PWM", "esp:17", "yellow", [ "h-8", "v52", "h195", "v-312" ] ],
+    [ "servo_hrana:V+", "esp:5V", "red", [ "h-16", "v62", "h325", "v-145" ] ],
+    [ "servo_hrana:GND", "esp:GND.1", "black", [ "h-24", "v72", "h335", "v-145" ] ],
+
+    [ "pot_temp:VCC", "esp:3V3", "red", [ "v10", "h160", "v435", "h-480", "v-405" ] ],
+    [ "pot_do:VCC", "pot_temp:VCC", "red", [ "v10", "h140", "v-115" ] ],
+    [ "pot_temp:GND", "esp:GND.2", "black", [ "v16", "h-145", "v35" ] ],
+    [ "pot_do:GND", "esp:GND.2", "black", [ "v16", "h-130", "v-80" ] ],
+    [ "pot_temp:SIG", "esp:1", "green", [ "v22", "h-185", "v65" ] ],
+    [ "pot_do:SIG", "esp:2", "blue", [ "v22", "h-185", "v-40" ] ],
+
+    [ "esp:42", "r1:1", "blue", [ "h75", "v40" ] ],
+    [ "r1:2", "led_oxig:A", "blue", [] ],
+    [ "led_oxig:C", "led_calcar:C", "black", [ "v10", "h15", "v40", "h-15" ] ],
+
+    [ "esp:38", "r2:1", "yellow", [ "h65", "v50" ] ],
+    [ "r2:2", "led_calcar:A", "yellow", [] ],
+    [ "led_calcar:C", "led_filtru:C", "black", [ "v10", "h15", "v40", "h-15" ] ],
+
+    [ "esp:40", "r3:1", "green", [ "h55", "v120" ] ],
+    [ "r3:2", "led_filtru:A", "green", [] ],
+    [ "led_filtru:C", "led_pompa:C", "black", [ "v10", "h15", "v40", "h-15" ] ],
+
+    [ "esp:39", "r4:1", "cyan", [ "h45", "v160" ] ],
+    [ "r4:2", "led_pompa:A", "cyan", [] ],
+    [ "led_pompa:C", "led_alarma:C", "black", [ "v10", "h15", "v40", "h-15" ] ],
+
+    [ "esp:47", "r5:1", "red", [ "h35", "v145" ] ],
+    [ "r5:2", "led_alarma:A", "red", [] ],
+    [ "led_alarma:C", "buzzer:1", "black", [ "v15", "h-25", "v25" ] ],
+
+    [ "esp:45", "buzzer:2", "orange", [ "h20", "v245", "h145" ] ],
+    [ "buzzer:1", "esp:GND.3", "black", [ "h-15", "v45", "h-175", "v-215" ] ]
+  ],
+  "dependencies": {}
+}
