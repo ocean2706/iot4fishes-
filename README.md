@@ -79,11 +79,11 @@ arduino-cli compile --fqbn esp32:esp32:esp32s3 --output-dir ./build firmware.ino
 The project can be deployed and simulated on **Linux** (recommended) or **Windows 10/11** (via WSL2):
 
 ### 1. Container Runtime (Linux or Windows)
-* **Linux:** Docker Engine + Docker Compose v2 (`docker compose`) or Podman (`podman-compose`) to run the **Eclipse Mosquitto** MQTT broker (`port 1883`) and **PostgreSQL 16** database (`port 5432`)[cite: 16, 17].
+* **Linux:** Docker Engine + Docker Compose v2 (`docker compose`) or Podman (`podman-compose`) to run the **Eclipse Mosquitto** MQTT broker (`port 1883`) and **PostgreSQL 16** database (`port 5432`)
 * **Windows:** **Docker Desktop for Windows** (with the WSL2 backend enabled) or **Podman Desktop** — `host.wokwi.internal` resolves automatically to the Windows/WSL2 host on port `1883`.
 
 ### 2. Development & Compilation Toolchain
 * **Visual Studio Code (VS Code)** (Linux or Windows).
-* **Wokwi Simulator Extension for VS Code** (`wokwi.wokwi-vscode` — installed from the VS Code Extensions Marketplace) to emulate the **ESP32-S3-DevKitC-1**, I2C `LCD1602`, potentiometers, servo feeder, LEDs, and piezo buzzer[cite: 13, 15, 17].
-* **Arduino CLI (`arduino-cli`)** with the `esp32:esp32` board core and libraries (`PubSubClient`, `ArduinoJson`, `LiquidCrystal I2C`)[cite: 15, 16].
-* **Python 3.10+** with `paho-mqtt` and `psycopg2-binary` (automatically provisioned inside `.venv` by `setup.project.sh`)[cite: 16, 17].
+* **Wokwi Simulator Extension for VS Code** (`wokwi.wokwi-vscode` — installed from the VS Code Extensions Marketplace) to emulate the **ESP32-S3-DevKitC-1**, I2C `LCD1602`, potentiometers, servo feeder, LEDs, and piezo buzzer
+* **Arduino CLI (`arduino-cli`)** with the `esp32:esp32` board core and libraries (`PubSubClient`, `ArduinoJson`, `LiquidCrystal I2C`)
+* **Python 3.10+** with `paho-mqtt` and `psycopg2-binary` (automatically provisioned inside `.venv` by `setup.project.sh`)
