@@ -50,7 +50,7 @@ ferma-piscicola-iot/
 
 ---
 
-## 3\. Quick Start (Any Installation Path)
+## 3\. Quick Start 
 
 1. **Run the generic installer** from any directory (optionally passing a target folder):
 
